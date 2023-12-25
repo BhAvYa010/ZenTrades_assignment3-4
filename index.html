@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMARTSERV - Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #0f0e0e; /* Grey background color */
+        }
+
+        .outer-box {
+            background-color: #232020; /* Different color for the outer box */
+            padding: 20px;
+            border-radius: 10px;
+            height: 100%; /* Full height */
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+        }
+
+        .login-box {
+            background-color: #171515; /* Black login box color */
+            border: 3px solid #171515;
+            border-radius: 11px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #fff; /* Text color in login box */
+            max-height: 1500px;
+            max-width: 400px; /* Set your desired max-width */
+            width: 100%; /* Use 100% width */
+            box-sizing: border-box;
+            padding: 30px;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h2 {
+            color: #fff; /* Title color in login box */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%; /* Adjusted width to 100% */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%; /* Adjusted width to 100% */
+        }
+
+        .forgot-password {
+            color: #949090; /* Text color for forgot password link */
+            text-decoration: underline;
+            margin-top: 10px;
+            display: inline-block;
+            font-size: smaller;
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: smaller;
+        }
+    </style>
+</head>
+<body>
+
+<div class="outer-box">
+    <div class="login-box">
+        <div class="logo">
+            <img src="https://github.com/BhAvYa010/ZenTrades_assignment3-4/blob/main/123.png" alt="SMARTSERV Logo">
+        </div>
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="text" id="username" name="username" placeholder="Username">
+                <span id="usernameError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <span id="passwordError" class="error"></span>
+            </div>
+
+            <button type="button" onclick="login()">Login</button>
+        </form>
+
+        <a href="mailto:support@smartserv.io" class="forgot-password">Forgot your password?</a>
+    </div>
+</div>
+
+<script>
+    function login() {
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const usernameError = document.getElementById('usernameError');
+        const passwordError = document.getElementById('passwordError');
+
+        // Reset error messages
+        usernameError.textContent = '';
+        passwordError.textContent = '';
+
+        // Validate username
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(usernameInput.value)) {
+            usernameError.textContent = 'Enter a valid email address';
+            return;
+        }
+
+        // Validate password
+        const passwordValue = passwordInput.value;
+        if (!passwordValue.match(/[A-Z]/)) {
+            passwordError.textContent = 'Password must contain an uppercase letter';
+            return;
+        }
+        if (!passwordValue.match(/\d/)) {
+            passwordError.textContent = 'Password must contain a number';
+            return;
+        }
+        if (passwordValue.includes('@') && /^[a-zA-Z0-9@]+$/.test(passwordValue)) {
+            // Password is valid
+            alert('Login successful!');
+        } else {
+            passwordError.textContent = 'Password can only contain @ and should not have special characters';
+        }
+    }
+</script>
+
+</body>
+</html>
